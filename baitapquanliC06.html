@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="" alt="">
+<h1 style="margin-left: 550px">Danh Sách Học Sinh Lớp C06</h1>
+<input style="margin-left: 500px" type="text" id="create">
+<button onclick="create()">Thêm Học Viên</button>
+<br>
+<br>
+<table style="margin-left: 500px" border="2">
+  <tr>
+    <th>STT</th>
+    <th>Danh Sách Học Viên</th>
+    <th colspan="2" style="width: 100px">Sửa/Xóa</th>
+    <th>Học Sinh Yếu</th>
+    <th>Học Sinh Khá</th>
+    <th>Học Sinh Giỏi</th>
+  </tr>
+  <tbody id="Students">
+
+  </tbody>
+</table>
+<div id="edit">
+
+</div>
+<script>
+  let STT = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+  let Students = ['Lê Minh Đức', 'Doãn Đình Đề', 'Bùi Thị Mai', 'Nguyễn Mạnh Hùng', 'Nguyễn Chí Thành Lộc', 'Đặng Tiến Anh', 'Phùng Đức Lâm', 'Đỗ Văn Dân', 'Nguyễn Trọng Hiếu']
+  function showAll () {
+    let str = '';
+    for (let i = 0; i < Students.length; i++) {
+      str += `
+      <tr>
+      <td>${STT[i]}</td>
+  <td>${Students[i]}</td>
+  <td><button onclick="showFromEdit(${i})">Sửa</button></td>
+  <td><button onclick="remote(${i})">Xóa</button></td>
+  <td><input type="radio" name="" id="" style="margin-left: 40px"></td>
+  <td><input type="radio" name="" id="" style="margin-left: 40px"></td>
+  <td><input type="radio" name="" id="" style="margin-left: 40px" ></td>
+</tr>
+      `
+    }
+    document.getElementById('Students').innerHTML = str;
+  }
+  showAll()
+  function create () {
+    let them = document.getElementById('create').value;
+    Students.push(them);
+    showAll();
+  }
+  function remote (index) {
+    Students.splice(index, 1);
+    showAll();
+  }
+  function showFromEdit (index) {
+    let produtEdit = Students[index];
+    let html = `
+     <input style="margin-left: 500px" type="text" value="${produtEdit}" id="produtEdit">
+     <button onclick="edit(${index})">Save</button>
+    `
+    document.getElementById('edit').innerHTML=html;
+  }
+  function edit(index) {
+    let newProduts = document.getElementById('produtEdit').value;
+    Students[index] = newProduts;
+    showAll()
+  }
+
+</script>
+<h2 style="margin-left: 500px">Chú Thích</h2>
+<textarea style="margin-left: 500px" name="" id="" cols="100" rows="20"></textarea>
+</body>
+</html>
